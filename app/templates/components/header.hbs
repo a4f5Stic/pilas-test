@@ -1,0 +1,47 @@
+<PaperToolbar class="header">
+  <PaperToolbarTools>
+
+    <a class="pilas-bloques-logo" href="#"><img src='imagenes/logo.png'></a>
+
+    {{#unless (or this.challenge this.book)}}
+      <span class="flex"/>
+      <span class="header-title">{{t "components.header.tool"}}</span>
+    {{/unless}}
+
+    {{#if (or this.challenge this.book)}}
+      {{#if (media 'isMobile')}}
+        <NavigationMenu 
+          @book={{this.book}}
+          @challenge={{this.challenge}}
+          @chapter={{this.chapter}}
+          @group={{this.group}}
+          @hidden={{this.openCustomScene}}
+        />
+      {{else}}
+        <span class="flex"/>
+        <NavigationBreadcrumb 
+          @book={{this.book}}
+          @challenge={{this.challenge}}
+          @chapter={{this.chapter}}
+          @group={{this.group}}
+          @hidden={{this.openCustomScene}}
+        />
+      {{/if}}
+      <ChallengeNavigationArrows @challenge={{this.challenge}}/>
+    {{/if}}
+
+    
+    <span class="flex"/>
+
+    <LanguageMenu/>
+    
+    <SimpleReadToggle @book={{or this.book this.chapter.libro}}/>
+
+    <NightModeToggle/>
+    &nbsp;&nbsp;&nbsp;
+    <SessionButton/>
+
+  </PaperToolbarTools>
+</PaperToolbar>
+
+<Terms />

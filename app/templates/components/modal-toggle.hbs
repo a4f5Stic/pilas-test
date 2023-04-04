@@ -1,0 +1,5 @@
+{{#if this.open}}
+  <Modal @title={{title}} @onClose={{action (mut this.open) false}}>
+    {{ yield }}
+  </Modal>
+{{/if}}

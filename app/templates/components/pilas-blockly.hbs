@@ -1,0 +1,41 @@
+{{#if this.cargando}}
+  <Spinner @centered={{true}} />
+{{else}}
+  <EmberBlockly
+      @mediaFolder={{"media/"}}
+      @blocks={{this.blockly_toolbox}}
+      @workspace={{this.initial_workspace}}
+      @withZoom={{true}}
+      @withTrash={{true}}
+      @comments={{this.blockly_comments}}
+      @disable={{this.blockly_disable}}
+      @duplicate={{this.blockly_duplicate}}
+      @help={{false}}
+      @disableBlock={{false}}
+      @showCode={{this.showCode}}
+      @comment={{true}}
+      @onChangeWorkspace={{action "onChangeWorkspace"}}
+      @onNewWorkspace={{action "onNewWorkspace"}}
+      @disableNotConnectedToMainBlock={{true}}
+    />
+    <span class="pilas-blockly-workspace-buttons">
+      <ChallengeWorkspaceButtons 
+        @actividad={{this.challenge}} 
+        @shouldUseFloatingMode={{this.shouldUseFloatingMode}} 
+        @changeScreenMode={{this.changeScreenMode}} 
+        @xml={{this.codigoActualEnFormatoXML}}
+        @setWorkspace={{action "setWorkspace"}}
+      />
+    </span>
+{{/if}}
+
+{{#if this.isEndModalOpen}}
+  {{#if (compute (action this.shouldShowCongratulationsModal))}}
+    <CongratulationsModal @onClose={{action "hideEndModal"}}/>
+  {{else}}
+    <ExpectationModal
+      @expects={{this.expects}}
+      @challenge={{this.challenge}}
+      @onClose={{action "hideEndModal"}}/>
+  {{/if}}
+{{/if}}

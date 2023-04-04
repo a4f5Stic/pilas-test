@@ -1,0 +1,18 @@
+{{#paper-dialog class="flex" onClose=this.onClose fullscreen=true origin=dialogOrigin parent=dialogParent clickOutsideToClose=true}}
+    <PaperToolbar>
+        <PaperToolbarTools>
+            <h2>{{title}}</h2>
+            <span class="flex"></span>
+            <Button @onClick={{onClose}} @isButton={{true}}>{{paper-icon "close"}}</Button>
+        </PaperToolbarTools>
+    </PaperToolbar>
+    <PaperDialogContent class="layout-column">
+        {{yield}}
+    </PaperDialogContent>
+    {{#if hasButtons}}
+        <PaperDialogActions class="layout-row">
+            <Button @onClick={{this.onClose}}>{{this.cancel}}</Button>
+            <Button @onClick={{this.onSuccess}}>{{this.success}}</Button>
+        </PaperDialogActions>
+    {{/if}}
+{{/paper-dialog}}

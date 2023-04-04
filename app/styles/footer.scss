@@ -1,0 +1,42 @@
+.app-footer {
+    background-color: var(--theme-background-secondary-color);
+}
+
+.footer {
+    background-color: var(--theme-background-color);
+    color: var(--theme-font-color);
+    margin-bottom: 5px;
+}
+
+.footer-card {
+    position: inherit;
+    border-radius: 10px;
+}
+
+.footer .md-button {
+    font-size: 11px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.footer .app-version {
+    font-size: 13px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.footer .app-version > code {
+    padding-left: 25px;
+}
+
+.program-ar-logo {
+    background-image: var(--theme-programar-logo);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 145px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+    margin-right: -10px;
+}

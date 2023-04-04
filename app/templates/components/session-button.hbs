@@ -1,0 +1,26 @@
+{{#if this.session}}
+  <PaperMenu @offset="5 43" as |menu|>
+    <menu.trigger class="user-menu">
+      <img class="face" src= {{ this.session.avatarURL }} />
+      <Button> {{ this.session.nickName }} </Button>
+    </menu.trigger>
+    <menu.content as |content|>
+      <content.menu-item>
+        <Button @onClick={{action "changeUser"}}> {{t "components.sessionButton.changeUser"}} </Button>
+      </content.menu-item>
+
+      <content.menu-item>
+        <Button @onClick={{action "logout"}}> {{t "components.sessionButton.logout"}} </Button>
+      </content.menu-item>
+    </menu.content>
+  </PaperMenu>
+  <PersonalSurvey />
+{{else}}
+  <img class="face gray" src={{ this.randomAvatar }} />
+  <Button id="login-btn" @onClick={{action (mut this.openLogin) true}}> {{t "components.sessionButton.login"}} </Button>
+{{/if}}
+
+
+<ModalToggle @title={{t "components.login.login"}} @open={{this.openLogin}}>
+  <Login />
+</ModalToggle>

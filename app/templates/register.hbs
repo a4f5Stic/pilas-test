@@ -1,0 +1,95 @@
+<Header/>
+
+<div class="center">
+  <PaperForm class="register-form" @onSubmit={{action "doRegister"}} as |form|>
+    <img src="imagenes/session/register.png" />
+    
+    <PbInput 
+      @label={{t "templates.register.username"}}
+      @model={{ this.registerData.username }} 
+      @focusOut={{ action "checkUsername" }}
+      @customValidations={{ this.usernameFormatValidation }}
+      @required={{ true }}
+      @error={{ if (not this.validUsername) (t "templates.register.errors.userAlreadyExists") }} />
+
+    <PbInput 
+      @type="password" 
+      @label={{t "templates.register.password"}}
+      @model={{ this.registerData.password }} 
+      @required={{ true }} />
+
+    <PasswordConfirmation @password={{ this.registerData.password }} />
+
+    <PbInput 
+      @type="email" 
+      @label="{{t "templates.register.email"}} ({{t "templates.register.options.optional"}})"
+      @model={{ this.registerData.email }}
+      @customValidations={{ this.mailValidation }} />
+
+    <p for="avatarURL">
+      <label>{{t "templates.register.chooseAvatar"}}:</label>
+      <PbInput class="invisible-input" @type="checkbox" @model={{ this.registerData.avatarURL }} @required={{ true }} />  
+    </p>
+    <PaperGridList @cols="4" @rowHeight="gt-xs-1:1 gt-md-1:1" as |grid|>
+      {{#each avatars as |avatar|}}
+        <grid.tile as |tile|>
+          <button type="button" class="avatar" onClick={{action (mut this.registerData.avatarURL) avatar}}>
+            <img class={{ if (not (eq this.registerData.avatarURL avatar)) "gray" "selected"}} src={{ avatar }} />
+          </button>
+        </grid.tile>
+      {{/each}}
+    </PaperGridList>
+
+    <p>{{t "templates.register.parentalConsent"}}</p>
+
+    <small>{{t "templates.register.inAge"}}</small>
+    <p></p>
+
+    <PbInput 
+      @label={{t "templates.register.parentalFullname"}}
+      @model={{ this.registerData.parentName }} 
+      @required={{ true }}
+      @customValidations={{ this.parentNameValidation }} />
+
+    <PbInput
+      @label={{t "templates.register.parentalId"}}
+      @model={{ this.registerData.parentDNI }} 
+      @required={{ true }} 
+      @customValidations={{ this.DNIValidation }} />
+
+    <Collapsable 
+      @title={{t "templates.register.whyData.title"}}
+      @class="left">
+
+      <p>{{t "templates.register.whyData.privacy"}}</p>
+      <p>
+        {{t "templates.register.whyData.dataProtectionLaw"}}
+        <TermsAndConditionsLink />.
+      </p>
+      <p>
+        {{t "templates.register.whyData.parentalContact"}} 
+        <a href="mailto:pilasbloques@program.ar">pilasbloques@program.ar</a> 
+        {{t "templates.register.whyData.whyContact"}}
+      </p>
+
+    </Collapsable>
+
+    <Input 
+      @type={{"checkbox"}} 
+      required /> 
+    <span>
+      {{t "templates.register.iHaveReadAndAccept"}} 
+      <TermsAndConditionsLink />
+    </span>
+
+    <br><br>
+    <ProgressButton 
+      class="link" 
+      type="submit" 
+      @isDisabled={{not this.validUsername}} 
+      @loading={{ this.pilasBloquesApi.loading.register }}>
+        {{t "templates.register.register"}}
+    </ProgressButton>
+  </PaperForm>
+  <br><br>
+</div>

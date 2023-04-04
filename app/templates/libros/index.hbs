@@ -1,0 +1,46 @@
+<Header/>
+
+<div class="contenido-principal {{if (compute (action this.shouldShowSimpleRead)) 'simple-read-mode'}}">
+
+  <div class="box">
+
+    <p><img class='main-logo' src='imagenes/main-logo.png' width="468" height="262"></p>
+    <p>
+    {{t "templates.libros.index.welcome"}}
+    </p>
+
+    <div class="jumbotron center">
+      <p>
+        {{ t "templates.libros.index.challenges"}}
+      </p>
+
+      {{#each this.model as |book|}}
+        {{#unless book.oculto}}
+          {{challenges-book book=book}}
+        {{/unless}}
+      {{/each}}
+    </div>
+
+    <div class="jumbotron center">
+
+    {{#if this.enableChallengeCreator}}
+      <p>
+      {{ t "templates.libros.index.customChallenges"}}
+      </p>
+      {{create-custom-challenge}}
+      {{import-custom-challenge}}
+    {{/if}}
+
+    </div>
+
+    <hr>
+
+    <p>
+     {{t "templates.libros.index.visitAbout.part1"}}<Link @href={{href-to "acercade"}} @openOnNewTab={{false}}><strong>{{t "templates.libros.index.visitAbout.link1"}}</strong></Link>
+           {{t "templates.libros.index.visitAbout.part2"}}
+    </p>
+
+  </div>
+
+
+</div>

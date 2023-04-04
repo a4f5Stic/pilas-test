@@ -1,0 +1,9 @@
+{{#if (or this.initial (and this.item this.item.titulo))}}
+    <li class={{this.classes}}>
+        {{#if this.href}}
+            <a href={{this.href}}>{{yield}}{{this.item.titulo}}</a>
+        {{else}}
+            <a>{{yield}}{{this.item.titulo}}</a>
+        {{/if}}
+    </li>
+{{/if}}

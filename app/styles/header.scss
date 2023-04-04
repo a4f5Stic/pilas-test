@@ -1,0 +1,79 @@
+$header-height: 45px;
+
+.header {
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.header div {
+    display: flex;
+    height: inherit;
+}
+
+.header-title {
+    font-size: smaller;
+}
+
+@mixin config-elem() {
+    margin-top: 10%;
+}
+
+.night-mode {
+    @include config-elem();
+}
+
+.simple-read {
+    @include config-elem();
+    margin-right: 0.4em;
+}
+
+md-toolbar:not(.md-menu-toolbar) {
+    background-color: var(--theme-background-color);
+    color: var(--theme-font-color);
+    min-height:$header-height !important;
+    height: $header-height !important;
+}
+
+.md-toolbar-tools {
+    height: $header-height;
+    max-height: $header-height;
+}
+
+md-toolbar:not(.md-menu-toolbar) .material-icons {
+    color: var(--theme-font-color);
+}
+
+.pilas-bloques-logo {
+    padding-top: 8px;
+}
+
+md-menu-content {
+    background-color: var(--theme-menu-color);
+    color: var(--theme-font-color);
+}
+
+md-menu-item > * {
+    width: 100%;
+    margin: auto 0;
+    padding-left: 16px;
+    padding-right: 0px;
+}
+
+.user-menu {
+    height: inherit !important;
+    display: inline-flex;
+}
+
+.face {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+#login-btn > button {
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    color: var(--theme-link-color);
+  }
+}

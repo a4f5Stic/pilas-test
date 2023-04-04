@@ -1,0 +1,20 @@
+<Breadcrumb>
+    
+    {{!-- Challenge title --}}
+    <BreadcrumbItem @item={{this.challenge}} class="challenge-title" @selected={{true}} />
+    
+    {{#if this.book}}
+        {{!-- Challenge group --}}
+        <BreadcrumbItem @item={{this.group}} @href={{href-to "libros.verLibro" this.book.id}} />
+        
+        {{!-- Challenge chapter --}}
+        <BreadcrumbItem @item={{this.chapter}} @href={{href-to "libros.verLibro" this.book.id}} />
+        
+        {{!-- Challenge book --}}
+        <BreadcrumbItem @item={{this.book}} @href={{href-to "libros.verLibro" this.book.id}} />
+    {{/if}}
+    
+    {{!-- Home button--}}
+    <BreadcrumbItem @href={{href-to "index"}} @initial={{true}}>{{paper-icon "home"}}</BreadcrumbItem>
+
+</Breadcrumb>
